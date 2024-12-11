@@ -161,9 +161,9 @@ model_options = {
     # "Epoch 80": "1qusiTrGxUzV6mCA4G8Sij8z-vGzyrCOX",
     "Epoch 40": "1YlNWW59g7A8vwjKXT1RyX9zRw4ao2FrW",
     "Epoch 60": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",  
-    "Epoch 80": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",
+    "Epoch 80": "1ZwugCWurqrdrxsHEx1rPGMCmTGjQlBBC",
 
-    # "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
+    "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
     # "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
 }
 
@@ -282,15 +282,11 @@ elif method == "GAN 1 With Tensorflow":
 
 elif method == "GAN 2 With Pytroch":
 
-
-    
     st.title("Image Colorization with GAN 2 Pytroch")
-
 
     selected_model_name = st.selectbox("Pilih Pretrained Model", list(model_options.keys()))
     selected_model_file_id = model_options[selected_model_name]
     model_path = f'{selected_model_name}.pth'
-
 
     # Unduh model jika belum ada
     download_model_if_not_exists(model_path, selected_model_file_id)
@@ -338,13 +334,13 @@ elif method == "GAN 2 With Pytroch":
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                st.image(image_cropped, caption='Uploaded Image', use_column_width=True)
+                st.image(image_cropped, caption='Uploaded Image', use_container_width=True)
 
             with col2:
-                st.image(gray_image, caption='Grayscale Image (L channel)', use_column_width=True, clamp=True)
+                st.image(gray_image, caption='Grayscale Image (L channel)', use_container_width=True, clamp=True)
 
             with col3:
-                st.image(fake_img, caption='Colorized Image', use_column_width=True)
+                st.image(fake_img, caption='Colorized Image', use_container_width=True)
 
             # Opsi untuk mengunduh hasil
             result = Image.fromarray((fake_img * 255).astype(np.uint8))
@@ -352,7 +348,6 @@ elif method == "GAN 2 With Pytroch":
             result.save(buf, format="JPEG")
             byte_im = buf.getvalue()
             st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
-
 
 
 
