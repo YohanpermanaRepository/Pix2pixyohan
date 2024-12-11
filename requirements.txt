@@ -1,0 +1,10 @@
+streamlit
+torch
+torchvision
+Pillow
+numpy
+scikit-image
+matplotlib
+gdown
+opencv-python-headless
+tensorflow
