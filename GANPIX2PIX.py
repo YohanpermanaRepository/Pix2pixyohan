@@ -163,7 +163,7 @@ model_options = {
     "Epoch 60": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",  
     "Epoch 80": "1QFixPuRO5G3ZCyYsMvKpxvfBNS4R0HK8",
 
-    # "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
+    "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
     # "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
 }
 
