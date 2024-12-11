@@ -157,17 +157,14 @@ def load_model(model_path):
 
 # Dropdown untuk memilih model
 model_options = {
-    # "Epoch 40": "1Kl5_XzzN6FT84AeJM14JT7E0cbXtA9L9",  
-    # "Epoch 80": "1qusiTrGxUzV6mCA4G8Sij8z-vGzyrCOX",
-    "Epoch 40": "1YlNWW59g7A8vwjKXT1RyX9zRw4ao2FrW",
-    "Epoch 60": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",  
-    "Epoch 80": "1ZwugCWurqrdrxsHEx1rPGMCmTGjQlBBC",
-
-    # "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
-    # "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
+    "Epoch 40": "1Kl5_XzzN6FT84AeJM14JT7E0cbXtA9L9",  
+    "Epoch 80": "1qusiTrGxUzV6mCA4G8Sij8z-vGzyrCOX",
+    "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
+    "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
 }
 
 
+# Sidebar untuk memilih metode
 
 method = st.sidebar.selectbox("Pilih Metode", ["-", "GAN 1 With Tensorflow", "GAN 2 With Pytroch", "CNN Pretrained Caffe"])
 
@@ -183,7 +180,7 @@ if method == "-":
     - **GAN**: Utilizing a Generative Adversarial Network (GAN) model for batik colorization, trained on 485 images of Madura batik. This method leverages deep learning to achieve accurate and realistic colorization of batik images.
     - **CNN Pretrained Caffe**: This method utilizes a CNN model based on Pretrained Caffe, where the model has been trained with external coloring data without involving batik images.
     """)
-    st.image("https://res.cloudinary.com/ddu9qoyjl/image/upload/v1726564586/gs7ubzctsg0odjugewic.jpg", caption="Contoh Gambar", use_container_width=True)
+    st.image("https://res.cloudinary.com/ddu9qoyjl/image/upload/v1726564586/gs7ubzctsg0odjugewic.jpg", caption="Contoh Gambar", use_column_width=True)
     st.write("*MBKM RISET 2024 Universitas Trunojoyo Madura*")
 
 
@@ -282,11 +279,15 @@ elif method == "GAN 1 With Tensorflow":
 
 elif method == "GAN 2 With Pytroch":
 
+
+    
     st.title("Image Colorization with GAN 2 Pytroch")
+
 
     selected_model_name = st.selectbox("Pilih Pretrained Model", list(model_options.keys()))
     selected_model_file_id = model_options[selected_model_name]
     model_path = f'{selected_model_name}.pth'
+
 
     # Unduh model jika belum ada
     download_model_if_not_exists(model_path, selected_model_file_id)
@@ -334,13 +335,13 @@ elif method == "GAN 2 With Pytroch":
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                st.image(image_cropped, caption='Uploaded Image', use_container_width=True)
+                st.image(image_cropped, caption='Uploaded Image', use_column_width=True)
 
             with col2:
-                st.image(gray_image, caption='Grayscale Image (L channel)', use_container_width=True, clamp=True)
+                st.image(gray_image, caption='Grayscale Image (L channel)', use_column_width=True, clamp=True)
 
             with col3:
-                st.image(fake_img, caption='Colorized Image', use_container_width=True)
+                st.image(fake_img, caption='Colorized Image', use_column_width=True)
 
             # Opsi untuk mengunduh hasil
             result = Image.fromarray((fake_img * 255).astype(np.uint8))
@@ -348,6 +349,7 @@ elif method == "GAN 2 With Pytroch":
             result.save(buf, format="JPEG")
             byte_im = buf.getvalue()
             st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
+
 
 
 
