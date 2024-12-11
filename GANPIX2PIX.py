@@ -161,9 +161,9 @@ model_options = {
     # "Epoch 80": "1qusiTrGxUzV6mCA4G8Sij8z-vGzyrCOX",
     "Epoch 40": "1YlNWW59g7A8vwjKXT1RyX9zRw4ao2FrW",
     "Epoch 60": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",  
-    "Epoch 80": "1QFixPuRO5G3ZCyYsMvKpxvfBNS4R0HK8",
+    "Epoch 80": "1ZwugCWurqrdrxsHEx1rPGMCmTGjQlBBC",
 
-    "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
+    # "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
     # "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
 }
 
