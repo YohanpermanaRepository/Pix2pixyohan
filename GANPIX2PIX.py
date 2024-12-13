@@ -157,11 +157,17 @@ def load_model(model_path):
 
 # Dropdown untuk memilih model
 model_options = {
-    "Epoch 40": "1YlNWW59g7A8vwjKXT1RyX9zRw4ao2FrW",
-    "Epoch 60": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",  
-    "Epoch 80": "1QFixPuRO5G3ZCyYsMvKpxvfBNS4R0HK8",
-    "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
-    "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
+    # "Epoch 40": "1YlNWW59g7A8vwjKXT1RyX9zRw4ao2FrW",
+    # "Epoch 60": "1rwuc0qOABxSalJlVsRQ7rY6vpv91zGhn",  
+    # "Epoch 80": "1QFixPuRO5G3ZCyYsMvKpxvfBNS4R0HK8",
+    # "Epoch 100": "1bVKGgGjHdX4F2t3n3LiKfHyQwHj9ltTP",
+    # "Epoch 150": "1PMQVxvDTmLqP1DhX8xmP3K_iw_RCJsQN"
+
+    "Epoch 10": "1VFfEy00mhdlbrNbOGxHCdgY-D4OvcojX",
+    "Epoch 50": "1_k8X8uls8Fnt2qQ0xmrx-BC7ogiA6y1c",  
+    "Epoch 100": "1oLx_mC5gI0LGaP7CX0ZubGhJwFBE3Rpd",
+
+    
 }
 
 
