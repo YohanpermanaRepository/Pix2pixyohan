@@ -197,7 +197,7 @@ if method == "-":
     cols = st.columns(5)  # Create 5 columns for the grid
     for i, (batik_name, batik_path) in enumerate(batik_images.items()):
         # Resize image to a consistent size
-        batik_img = Image.open(batik_path).resize((150, 150))  # Resize to 150x150
+        batik_img = Image.open(batik_path).resize((256, 256)) 
 
         # Select the appropriate column
         col = cols[i % 5]
