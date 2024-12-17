@@ -390,7 +390,6 @@ elif method == "GAN 2 With Pytroch":
     selected_model_file_id = model_options[selected_model_name]
     model_path = f'{selected_model_name}.pth'
 
-
     # Unduh model jika belum ada
     download_model_if_not_exists(model_path, selected_model_file_id)
 
@@ -400,8 +399,8 @@ elif method == "GAN 2 With Pytroch":
     # Definisikan device untuk pemrosesan (CPU atau GPU)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # Pengunggah file (dengan multiple file upload)
-    uploaded_files = st.file_uploader("Choose images...", type="jpg", accept_multiple_files=True)
+    # Pengunggah file (dengan multiple file upload), memungkinkan jpg dan png
+    uploaded_files = st.file_uploader("Choose images...", type=["jpg", "png"], accept_multiple_files=True)
 
     if uploaded_files:
         for uploaded_file in uploaded_files:
@@ -448,9 +447,9 @@ elif method == "GAN 2 With Pytroch":
             # Opsi untuk mengunduh hasil
             result = Image.fromarray((fake_img * 255).astype(np.uint8))
             buf = BytesIO()
-            result.save(buf, format="JPEG")
+            result.save(buf, format="PNG")  # Save as PNG format
             byte_im = buf.getvalue()
-            st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
+            st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}.png", mime="image/png")  # Set MIME type for PNG
 
 
 
