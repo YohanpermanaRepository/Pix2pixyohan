@@ -38,7 +38,7 @@ import cv2 as cv
 import io
 import gdown
 import os
-
+import io
 
 def upsample(c_in, c_out, dropout=False):
     result = nn.Sequential()
@@ -179,41 +179,41 @@ method = st.sidebar.selectbox("Pilih Metode", ["-", "GAN 1 With Tensorflow", "GA
 if method == "-":
     st.write("**Here are some Batik Madura images you can download:**")
 
-        # Batik Madura images directory
-        batik_images = {
-            "Batik Madura 1": "TESTING/test_madura (1).jpg", 
-            "Batik Madura 2": "TESTING/test_madura (2).jpg", 
-            "Batik Madura 3": "TESTING/test_madura (3).jpg", 
-            "Batik Madura 4": "TESTING/test_madura (4).jpg", 
-            "Batik Madura 5": "TESTING/test_madura (5).jpg", 
-            "Batik BALI 1": "TESTING/test_bali (1).jpg", 
-            "Batik Bali 2": "TESTING/test_bali (2).jpg", 
-            "Batik Bali 3": "TESTING/test_bali (3).jpg", 
-            "Batik Bali 4": "TESTING/test_bali (4).jpg", 
-            "Batik Bali 5": "TESTING/test_bali (5).jpg", 
-        }
+    # Batik Madura images directory
+    batik_images = {
+        "Batik Madura 1": "TESTING/test_madura (1).jpg", 
+        "Batik Madura 2": "TESTING/test_madura (2).jpg", 
+        "Batik Madura 3": "TESTING/test_madura (3).jpg", 
+        "Batik Madura 4": "TESTING/test_madura (4).jpg", 
+        "Batik Madura 5": "TESTING/test_madura (5).jpg", 
+        "Batik BALI 1": "TESTING/test_bali (1).jpg", 
+        "Batik Bali 2": "TESTING/test_bali (2).jpg", 
+        "Batik Bali 3": "TESTING/test_bali (3).jpg", 
+        "Batik Bali 4": "TESTING/test_bali (4).jpg", 
+        "Batik Bali 5": "TESTING/test_bali (5).jpg", 
+    }
 
-        # Display Batik Madura images in a grid with consistent size
-        cols = st.columns(5)  # Create 5 columns for the grid
-        for i, (batik_name, batik_path) in enumerate(batik_images.items()):
-            # Resize image to a consistent size
-            batik_img = Image.open(batik_path).resize((150, 150))  # Resize to 150x150
+    # Display Batik images in a grid with consistent size
+    cols = st.columns(5)  # Create 5 columns for the grid
+    for i, (batik_name, batik_path) in enumerate(batik_images.items()):
+        # Resize image to a consistent size
+        batik_img = Image.open(batik_path).resize((150, 150))  # Resize to 150x150
 
-            # Select the appropriate column
-            col = cols[i % 5]
-            with col:
-                st.image(batik_img, caption=batik_name, use_container_width=True)  # Fixed the error
-                # Add download button for each image
-                buf = io.BytesIO()
-                batik_img.save(buf, format="PNG")
-                byte_im = buf.getvalue()
-                st.download_button(
-                    label="Download",
-                    data=byte_im,
-                    file_name=f"{batik_name}.png",
-                    mime="image/png"
-                )
-
+        # Select the appropriate column
+        col = cols[i % 5]
+        with col:
+            st.image(batik_img, caption=batik_name, use_container_width=True)  # Fixed the error
+            
+            # Add download button for each image
+            buf = io.BytesIO()
+            batik_img.save(buf, format="PNG")
+            byte_im = buf.getvalue()
+            st.download_button(
+                label="Download",
+                data=byte_im,
+                file_name=f"{batik_name}.png",
+                mime="image/png"
+            )
 
 
 elif method == "GAN 1 With Tensorflow":
