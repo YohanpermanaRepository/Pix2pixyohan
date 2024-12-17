@@ -177,18 +177,42 @@ method = st.sidebar.selectbox("Pilih Metode", ["-", "GAN 1 With Tensorflow", "GA
 
 
 if method == "-":
-    st.title("Welcome to the Batik Colorization Application Based on Deep Learning Model.")
-    st.write("Please select the desired method from the sidebar to start processing images.")
-    
-    # Tampilkan teks dan gambar default
-    st.write("""
-    In this option, you can choose two image processing methods for coloring batik images.:
-    
-    - **GAN**: Utilizing a Generative Adversarial Network (GAN) model for batik colorization, trained on 485 images of Madura batik. This method leverages deep learning to achieve accurate and realistic colorization of batik images.
-    - **CNN Pretrained Caffe**: This method utilizes a CNN model based on Pretrained Caffe, where the model has been trained with external coloring data without involving batik images.
-    """)
-    st.image("https://res.cloudinary.com/ddu9qoyjl/image/upload/v1726564586/gs7ubzctsg0odjugewic.jpg", caption="Contoh Gambar", use_column_width=True)
-    st.write("*MBKM RISET 2024 Universitas Trunojoyo Madura*")
+    st.write("**Here are some Batik Madura images you can download:**")
+
+        # Batik Madura images directory
+        batik_images = {
+            "Batik Madura 1": "TESTING/test_madura (1).jpg", 
+            "Batik Madura 2": "TESTING/test_madura (2).jpg", 
+            "Batik Madura 3": "TESTING/test_madura (3).jpg", 
+            "Batik Madura 4": "TESTING/test_madura (4).jpg", 
+            "Batik Madura 5": "TESTING/test_madura (5).jpg", 
+            "Batik BALI 1": "TESTING/test_bali (1).jpg", 
+            "Batik Bali 2": "TESTING/test_bali (2).jpg", 
+            "Batik Bali 3": "TESTING/test_bali (3).jpg", 
+            "Batik Bali 4": "TESTING/test_bali (4).jpg", 
+            "Batik Bali 5": "TESTING/test_bali (5).jpg", 
+        }
+
+        # Display Batik Madura images in a grid with consistent size
+        cols = st.columns(5)  # Create 5 columns for the grid
+        for i, (batik_name, batik_path) in enumerate(batik_images.items()):
+            # Resize image to a consistent size
+            batik_img = Image.open(batik_path).resize((150, 150))  # Resize to 150x150
+
+            # Select the appropriate column
+            col = cols[i % 5]
+            with col:
+                st.image(batik_img, caption=batik_name, use_container_width=True)  # Fixed the error
+                # Add download button for each image
+                buf = io.BytesIO()
+                batik_img.save(buf, format="PNG")
+                byte_im = buf.getvalue()
+                st.download_button(
+                    label="Download",
+                    data=byte_im,
+                    file_name=f"{batik_name}.png",
+                    mime="image/png"
+                )
 
 
 
