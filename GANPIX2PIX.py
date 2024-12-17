@@ -308,103 +308,103 @@ elif method == "GAN 2 With Pytroch":
     # Pengunggah file (dengan multiple file upload)
     uploaded_files = st.file_uploader("Choose images...", type="jpg", accept_multiple_files=True)
 
-    # if uploaded_files:
-    #     for uploaded_file in uploaded_files:
-    #         image = Image.open(uploaded_file).convert("RGB")
+    if uploaded_files:
+        for uploaded_file in uploaded_files:
+            image = Image.open(uploaded_file).convert("RGB")
             
-    #         # Crop gambar agar ukuran sama
-    #         size = (256, 256)  # Ukuran yang diinginkan
-    #         image_cropped = image.resize(size, Image.LANCZOS)  # Menggunakan LANCZOS sebagai alternatif
+            # Crop gambar agar ukuran sama
+            size = (256, 256)  # Ukuran yang diinginkan
+            image_cropped = image.resize(size, Image.LANCZOS)  # Menggunakan LANCZOS sebagai alternatif
 
-    #         # Pra-pemrosesan gambar
-    #         img = np.array(image_cropped)
-    #         img_lab = rgb2lab(img).astype("float32")
-    #         img_lab = transforms.ToTensor()(img_lab)
-    #         L = img_lab[[0], ...] / 50. - 1.  # Saluran warna luminance
+            # Pra-pemrosesan gambar
+            img = np.array(image_cropped)
+            img_lab = rgb2lab(img).astype("float32")
+            img_lab = transforms.ToTensor()(img_lab)
+            L = img_lab[[0], ...] / 50. - 1.  # Saluran warna luminance
 
-    #         # Membuat tensor
-    #         L = L.unsqueeze(0).to(device)
+            # Membuat tensor
+            L = L.unsqueeze(0).to(device)
 
-    #         # Membuat Gambar Grayscale dari saluran L
-    #         gray_image = (L.squeeze().cpu().numpy() + 1.) * 255 / 2  # Mengonversi saluran L ke rentang [0, 255]
-    #         gray_image = gray_image.astype(np.uint8)  # Mengubah ke uint8
+            # Membuat Gambar Grayscale dari saluran L
+            gray_image = (L.squeeze().cpu().numpy() + 1.) * 255 / 2  # Mengonversi saluran L ke rentang [0, 255]
+            gray_image = gray_image.astype(np.uint8)  # Mengubah ke uint8
 
-    #         # Meneruskan melalui model
-    #         with torch.no_grad():
-    #             fake_color = net_G(L)
-    #             fake_color = fake_color.detach()
+            # Meneruskan melalui model
+            with torch.no_grad():
+                fake_color = net_G(L)
+                fake_color = fake_color.detach()
 
-    #         # Mengonversi Lab ke RGB
-    #         fake_imgs = lab_to_rgb(L, fake_color)
-    #         fake_img = fake_imgs[0]
+            # Mengonversi Lab ke RGB
+            fake_imgs = lab_to_rgb(L, fake_color)
+            fake_img = fake_imgs[0]
 
-    #         # Menampilkan gambar keluaran dalam satu baris
-    #         col1, col2, col3 = st.columns(3)
+            # Menampilkan gambar keluaran dalam satu baris
+            col1, col2, col3 = st.columns(3)
 
-    #         with col1:
-    #             st.image(image_cropped, caption='Uploaded Image', use_column_width=True)
+            with col1:
+                st.image(image_cropped, caption='Uploaded Image', use_column_width=True)
 
-    #         with col2:
-    #             st.image(gray_image, caption='Grayscale Image (L channel)', use_column_width=True, clamp=True)
+            with col2:
+                st.image(gray_image, caption='Grayscale Image (L channel)', use_column_width=True, clamp=True)
 
-    #         with col3:
-    #             st.image(fake_img, caption='Colorized Image', use_column_width=True)
+            with col3:
+                st.image(fake_img, caption='Colorized Image', use_column_width=True)
 
-    #         # Opsi untuk mengunduh hasil
-    #         result = Image.fromarray((fake_img * 255).astype(np.uint8))
-    #         buf = BytesIO()
-    #         result.save(buf, format="JPEG")
-    #         byte_im = buf.getvalue()
-    #         st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
+            # Opsi untuk mengunduh hasil
+            result = Image.fromarray((fake_img * 255).astype(np.uint8))
+            buf = BytesIO()
+            result.save(buf, format="JPEG")
+            byte_im = buf.getvalue()
+            st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
 
-if uploaded_files:
-    for uploaded_file in uploaded_files:
-        image = Image.open(uploaded_file).convert("RGB")
+# if uploaded_files:
+#     for uploaded_file in uploaded_files:
+#         image = Image.open(uploaded_file).convert("RGB")
         
-        # Crop gambar agar ukuran sama
-        size = (256, 256)  # Ukuran yang diinginkan
-        image_cropped = image.resize(size, Image.LANCZOS)  # Menggunakan LANCZOS sebagai alternatif
+#         # Crop gambar agar ukuran sama
+#         size = (256, 256)  # Ukuran yang diinginkan
+#         image_cropped = image.resize(size, Image.LANCZOS)  # Menggunakan LANCZOS sebagai alternatif
 
-        # Pra-pemrosesan gambar
-        img = np.array(image_cropped)
-        img_lab = rgb2lab(img).astype("float32")
-        img_lab = transforms.ToTensor()(img_lab)
-        L = img_lab[[0], ...] / 50. - 1.  # Saluran warna luminance
+#         # Pra-pemrosesan gambar
+#         img = np.array(image_cropped)
+#         img_lab = rgb2lab(img).astype("float32")
+#         img_lab = transforms.ToTensor()(img_lab)
+#         L = img_lab[[0], ...] / 50. - 1.  # Saluran warna luminance
 
-        # Membuat tensor
-        L = L.unsqueeze(0).to(device)
+#         # Membuat tensor
+#         L = L.unsqueeze(0).to(device)
 
-        # Membuat Gambar Grayscale dari saluran L
-        gray_image = (L.squeeze().cpu().numpy() + 1.) * 255 / 2  # Mengonversi saluran L ke rentang [0, 255]
-        gray_image = gray_image.astype(np.uint8)  # Mengubah ke uint8
+#         # Membuat Gambar Grayscale dari saluran L
+#         gray_image = (L.squeeze().cpu().numpy() + 1.) * 255 / 2  # Mengonversi saluran L ke rentang [0, 255]
+#         gray_image = gray_image.astype(np.uint8)  # Mengubah ke uint8
 
-        # Meneruskan melalui model
-        with torch.no_grad():
-            fake_color = net_G(L)
-            fake_color = fake_color.detach()
+#         # Meneruskan melalui model
+#         with torch.no_grad():
+#             fake_color = net_G(L)
+#             fake_color = fake_color.detach()
 
-        # Mengonversi Lab ke RGB
-        fake_imgs = lab_to_rgb(L, fake_color)
-        fake_img = fake_imgs[0]
+#         # Mengonversi Lab ke RGB
+#         fake_imgs = lab_to_rgb(L, fake_color)
+#         fake_img = fake_imgs[0]
 
-        # Menampilkan gambar keluaran dalam satu baris
-        col1, col2, col3 = st.columns(3)
+#         # Menampilkan gambar keluaran dalam satu baris
+#         col1, col2, col3 = st.columns(3)
 
-        with col1:
-            st.image(image_cropped, caption='Uploaded Image', use_container_width=True)
+#         with col1:
+#             st.image(image_cropped, caption='Uploaded Image', use_container_width=True)
 
-        with col2:
-            st.image(gray_image, caption='Grayscale Image (L channel)', use_container_width=True, clamp=True)
+#         with col2:
+#             st.image(gray_image, caption='Grayscale Image (L channel)', use_container_width=True, clamp=True)
 
-        with col3:
-            st.image(fake_img, caption='Colorized Image', use_container_width=True)
+#         with col3:
+#             st.image(fake_img, caption='Colorized Image', use_container_width=True)
 
-        # Opsi untuk mengunduh hasil
-        result = Image.fromarray((fake_img * 255).astype(np.uint8))
-        buf = BytesIO()
-        result.save(buf, format="JPEG")
-        byte_im = buf.getvalue()
-        st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
+#         # Opsi untuk mengunduh hasil
+#         result = Image.fromarray((fake_img * 255).astype(np.uint8))
+#         buf = BytesIO()
+#         result.save(buf, format="JPEG")
+#         byte_im = buf.getvalue()
+#         st.download_button(f"Download Result for {uploaded_file.name}", data=byte_im, file_name=f"colorized_image_{uploaded_file.name}", mime="image/jpeg")
 
 
 
